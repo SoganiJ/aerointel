@@ -70,7 +70,7 @@ This platform covers **two interconnected subjects**:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/aerointel.git
+git clone https://github.com/SoganiJ/aerointel.git
 
 # Open directly in browser
 open index.html
