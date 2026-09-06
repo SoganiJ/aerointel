@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — AeroIntel</title>
+  <meta name="description" content="Interactive analytics dashboard for airline operations intelligence. Explore delay patterns, airline performance, and route analytics." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- ---- Sidebar ---- -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">✈️</div>
+        <div class="brand-text">
+          <h3>AeroIntel</h3>
+          <span>Operations Intelligence</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-label">Main</div>
+        <a href="index.html" class="nav-item">
+          <span class="nav-icon">🏠</span> Home
+        </a>
+        <a href="dashboard.html" class="nav-item active">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="predict.html" class="nav-item">
+          <span class="nav-icon">🤖</span> Predict Delay
+        </a>
+        <a href="insights.html" class="nav-item">
+          <span class="nav-icon">🔍</span> Deep Insights
+        </a>
+        <div class="nav-label">Analytics</div>
+        <a href="#kpi-section" class="nav-item">
+          <span class="nav-icon">📈</span> KPI Overview
+        </a>
+        <a href="#airlines-section" class="nav-item">
+          <span class="nav-icon">✈️</span> Airlines
+        </a>
+        <a href="#routes-section" class="nav-item">
+          <span class="nav-icon">🗺️</span> Routes
+        </a>
+        <a href="#temporal-section" class="nav-item">
+          <span class="nav-icon">📅</span> Temporal
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="project-info">
+          <div class="project-dot"></div>
+          <span>7.2M flights • Live Data</span>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ---- Main Content ---- -->
+    <main class="main-content">
+      <!-- ---- Top Header ---- -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
+          <div class="page-title-bar">
+            <h2>Analytics Dashboard</h2>
+            <p>Flight Delay Dataset 2024 • 7.2M Records • 35 Features</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search airlines, airports..." id="dashboard-search" />
+          </div>
+          <button class="header-btn tooltip" data-tooltip="Refresh Data" id="refresh-btn">🔄</button>
+          <button class="header-btn tooltip" data-tooltip="Export" id="export-btn">📥</button>
+        </div>
+      </header>
+
+      <!-- ---- Page Content ---- -->
+      <div class="page-content">
+        <!-- Filter Bar -->
+        <div class="filter-bar fade-in" id="filter-bar">
+          <span class="filter-label">🎛️ Filters</span>
+          <select class="filter-select" id="filter-airline">
+            <option value="all">All Airlines</option>
+          </select>
+          <select class="filter-select" id="filter-month">
+            <option value="all">All Months</option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+          <select class="filter-select" id="filter-airport">
+            <option value="all">All Airports</option>
+          </select>
+          <button class="btn btn-sm btn-secondary" id="reset-filters">↻ Reset</button>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid fade-in" id="kpi-section">
+          <div class="kpi-card coral">
+            <div class="kpi-icon">✈️</div>
+            <div class="kpi-value" id="kpi-flights">—</div>
+            <div class="kpi-label">Total Flights</div>
+            <div class="kpi-trend up">↗ 12.3% vs 2023</div>
+          </div>
+          <div class="kpi-card teal">
+            <div class="kpi-icon">⏱️</div>
+            <div class="kpi-value" id="kpi-delay">—</div>
+            <div class="kpi-label">Avg. Arrival Delay</div>
+            <div class="kpi-trend down">↘ 2.1 min lower</div>
+          </div>
+          <div class="kpi-card gold">
+            <div class="kpi-icon">✅</div>
+            <div class="kpi-value" id="kpi-ontime">—</div>
+            <div class="kpi-label">On-Time Performance</div>
+            <div class="kpi-trend up">↗ 1.8% improved</div>
+          </div>
+          <div class="kpi-card lavender">
+            <div class="kpi-icon">🚫</div>
+            <div class="kpi-value" id="kpi-cancel">—</div>
+            <div class="kpi-label">Cancellation Rate</div>
+            <div class="kpi-trend up">↗ 0.3% lower</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="dashboard-grid">
+          <!-- Monthly Trend (wide) -->
+          <div class="card grid-col-8 fade-in" id="temporal-section">
+            <div class="card-header">
+              <h3>Monthly Delay Trend</h3>
+              <span class="card-badge teal">2024</span>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+              <canvas id="chart-monthly-trend"></canvas>
+            </div>
+          </div>
+
+          <!-- Delay Causes -->
+          <div class="card grid-col-4 fade-in">
+            <div class="card-header">
+              <h3>Delay Cause Breakdown</h3>
+              <span class="card-badge coral">Distribution</span>
+            </div>
+            <div class="chart-container" style="height: 320px;">
+              <canvas id="chart-delay-causes"></canvas>
+            </div>
+          </div>
+
+          <!-- Airlines Performance -->
+          <div class="card grid-col-6 fade-in" id="airlines-section">
+            <div class="card-header">
+              <h3>Average Delay by Airline</h3>
+              <span class="card-badge lavender">Ranking</span>
+            </div>
+            <div class="chart-container" style="height: 360px;">
+              <canvas id="chart-airline-delay"></canvas>
+            </div>
+          </div>
+
+          <!-- Day of Week Radar -->
+          <div class="card grid-col-6 fade-in">
+            <div class="card-header">
+              <h3>Day of Week Analysis</h3>
+              <span class="card-badge gold">Pattern</span>
+            </div>
+            <div class="chart-container" style="height: 360px;">
+              <canvas id="chart-dow-radar"></canvas>
+            </div>
+          </div>
+
+          <!-- Delay Distribution -->
+          <div class="card grid-col-5 fade-in">
+            <div class="card-header">
+              <h3>Delay Distribution</h3>
+              <span class="card-badge teal">Histogram</span>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+              <canvas id="chart-delay-dist"></canvas>
+            </div>
+          </div>
+
+          <!-- Hourly Heatmap -->
+          <div class="card grid-col-7 fade-in">
+            <div class="card-header">
+              <h3>Hourly Departure Delay</h3>
+              <span class="card-badge coral">Heatmap</span>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+              <canvas id="chart-hourly"></canvas>
+            </div>
+          </div>
+
+          <!-- Airport Bubble -->
+          <div class="card grid-col-6 fade-in">
+            <div class="card-header">
+              <h3>Airport Performance</h3>
+              <span class="card-badge lavender">Volume vs Delay</span>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+              <canvas id="chart-airport-bubble"></canvas>
+            </div>
+          </div>
+
+          <!-- Cancellation by Month -->
+          <div class="card grid-col-6 fade-in">
+            <div class="card-header">
+              <h3>Cancellations by Month</h3>
+              <span class="card-badge gold">Stacked</span>
+            </div>
+            <div class="chart-container" style="height: 340px;">
+              <canvas id="chart-cancellation"></canvas>
+            </div>
+          </div>
+
+          <!-- Top Delayed Routes Table -->
+          <div class="card grid-col-12 fade-in" id="routes-section">
+            <div class="card-header">
+              <h3>Top 10 Most Delayed Routes</h3>
+              <span class="card-badge coral">Routes</span>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table" id="routes-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Route</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Avg Delay</th>
+                    <th>On-Time %</th>
+                    <th>Flights</th>
+                    <th>Distance</th>
+                  </tr>
+                </thead>
+                <tbody id="routes-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="data/flights.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

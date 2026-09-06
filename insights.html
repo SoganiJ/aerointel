@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Insights — AeroIntel</title>
+  <meta name="description" content="Deep analytics and predictive optimization for airline operations. Feature correlations, importance rankings, anomaly detection, and AI recommendations." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- ---- Sidebar ---- -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">✈️</div>
+        <div class="brand-text">
+          <h3>AeroIntel</h3>
+          <span>Operations Intelligence</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-label">Main</div>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span> Home</a>
+        <a href="dashboard.html" class="nav-item"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="predict.html" class="nav-item"><span class="nav-icon">🤖</span> Predict Delay</a>
+        <a href="insights.html" class="nav-item active"><span class="nav-icon">🔍</span> Deep Insights</a>
+        <div class="nav-label">Analysis</div>
+        <a href="#correlation-section" class="nav-item"><span class="nav-icon">🔗</span> Correlations</a>
+        <a href="#importance-section" class="nav-item"><span class="nav-icon">⭐</span> Feature Importance</a>
+        <a href="#seasonal-section" class="nav-item"><span class="nav-icon">📅</span> Seasonal</a>
+        <a href="#anomaly-section" class="nav-item"><span class="nav-icon">🚨</span> Anomalies</a>
+        <a href="#optimization-section" class="nav-item"><span class="nav-icon">💡</span> Optimization</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="project-info">
+          <div class="project-dot"></div>
+          <span>Predictive Optimization</span>
+        </div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ---- Main Content ---- -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
+          <div class="page-title-bar">
+            <h2>Deep Insights &amp; Optimization</h2>
+            <p>AI-Powered Predictive Optimization Platform</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-search">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search insights..." />
+          </div>
+          <button class="header-btn tooltip" data-tooltip="Export Report">📥</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Tab Navigation -->
+        <div class="tab-bar fade-in">
+          <button class="tab-btn active" data-tab="correlations">🔗 Correlations</button>
+          <button class="tab-btn" data-tab="importance">⭐ Feature Importance</button>
+          <button class="tab-btn" data-tab="seasonal">📅 Seasonal</button>
+          <button class="tab-btn" data-tab="anomalies">🚨 Anomalies</button>
+          <button class="tab-btn" data-tab="optimization">💡 Optimization</button>
+        </div>
+
+        <!-- ===== Tab: Correlations ===== -->
+        <div class="tab-content" id="tab-correlations">
+          <div class="insight-grid">
+            <!-- Correlation Heatmap -->
+            <div class="card fade-in" id="correlation-section">
+              <div class="card-header">
+                <h3>Feature Correlation Matrix</h3>
+                <span class="card-badge lavender">Heatmap</span>
+              </div>
+              <div id="correlation-heatmap"></div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: var(--space-md);">
+                Values range from -1 (inverse) to +1 (direct). Strong correlations (>0.5) highlighted.
+              </p>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="card fade-in">
+              <div class="card-header">
+                <h3>Key Correlation Insights</h3>
+                <span class="card-badge teal">Analysis</span>
+              </div>
+              <div id="correlation-insights"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Feature Importance ===== -->
+        <div class="tab-content" id="tab-importance" style="display:none;">
+          <div class="insight-grid" id="importance-section">
+            <div class="card fade-in">
+              <div class="card-header">
+                <h3>Feature Importance Ranking</h3>
+                <span class="card-badge coral">ML Model</span>
+              </div>
+              <div class="chart-container" style="height: 400px;">
+                <canvas id="chart-feature-importance"></canvas>
+              </div>
+            </div>
+            <div class="card fade-in">
+              <div class="card-header">
+                <h3>Importance by Category</h3>
+                <span class="card-badge gold">Grouped</span>
+              </div>
+              <div class="chart-container" style="height: 400px;">
+                <canvas id="chart-importance-pie"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- Airline Benchmarking -->
+          <div class="card fade-in" style="margin-top: var(--space-lg);">
+            <div class="card-header">
+              <h3>✈️ Airline Performance Benchmarking</h3>
+              <span class="card-badge teal">Scorecard</span>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table" id="benchmark-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Airline</th>
+                    <th>Avg Delay</th>
+                    <th>On-Time %</th>
+                    <th>Flights</th>
+                    <th>Rating</th>
+                  </tr>
+                </thead>
+                <tbody id="benchmark-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Seasonal ===== -->
+        <div class="tab-content" id="tab-seasonal" style="display:none;">
+          <div class="insight-grid" id="seasonal-section">
+            <div class="card fade-in">
+              <div class="card-header">
+                <h3>Seasonal Decomposition</h3>
+                <span class="card-badge lavender">Time Series</span>
+              </div>
+              <div class="chart-container" style="height: 380px;">
+                <canvas id="chart-seasonal"></canvas>
+              </div>
+            </div>
+            <div class="card fade-in">
+              <div class="card-header">
+                <h3>Optimal Departure Windows</h3>
+                <span class="card-badge teal">Recommendation</span>
+              </div>
+              <div id="optimal-windows"></div>
+            </div>
+          </div>
+          <!-- Route Optimization -->
+          <div class="card fade-in" style="margin-top: var(--space-lg);">
+            <div class="card-header">
+              <h3>🗺️ Route Schedule Optimization</h3>
+              <span class="card-badge coral">Recommendations</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: var(--space-lg);">
+              Based on historical delay patterns, these are the optimal departure windows for top routes to minimize delays.
+            </p>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Route</th>
+                    <th>Current Avg Delay</th>
+                    <th>Best Departure Window</th>
+                    <th>Projected Delay</th>
+                    <th>Improvement</th>
+                  </tr>
+                </thead>
+                <tbody id="route-opt-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Anomalies ===== -->
+        <div class="tab-content" id="tab-anomalies" style="display:none;">
+          <div class="card fade-in" id="anomaly-section" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h3>🚨 Detected Anomaly Events</h3>
+              <span class="card-badge coral">2024</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: var(--space-lg);">
+              Unusual delay spikes automatically detected and analyzed for root causes.
+            </p>
+            <div id="anomaly-list"></div>
+          </div>
+          <div class="card fade-in">
+            <div class="card-header">
+              <h3>Anomaly Impact Timeline</h3>
+              <span class="card-badge lavender">Visualization</span>
+            </div>
+            <div class="chart-container" style="height: 300px;">
+              <canvas id="chart-anomaly-timeline"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Optimization ===== -->
+        <div class="tab-content" id="tab-optimization" style="display:none;">
+          <div class="card fade-in" id="optimization-section" style="margin-bottom: var(--space-lg);">
+            <div class="card-header">
+              <h3>💡 AI Optimization Recommendations</h3>
+              <span class="card-badge teal">Actionable</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: var(--space-lg);">
+              Data-driven recommendations generated from analysis of 7.2M flight records to reduce delays and improve operational efficiency.
+            </p>
+          </div>
+          <div id="recommendations-list" style="display: grid; gap: var(--space-md);"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="data/flights.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/insights.js"></script>
+</body>
+</html>
