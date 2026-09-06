@@ -25,10 +25,14 @@
           c.style.display = c.id === `tab-${target}` ? '' : 'none';
         });
 
+        function tryRender(fn, name) {
+          try { fn(); } catch(e) { console.error(`Error rendering chart [${name}]:`, e); }
+        }
+
         // Lazy-render charts when tab opens
-        if (target === 'importance' && !charts.featureImportance) renderFeatureImportance();
-        if (target === 'seasonal' && !charts.seasonal) renderSeasonal();
-        if (target === 'anomalies' && !charts.anomalyTimeline) renderAnomalyTimeline();
+        if (target === 'importance' && !charts.featureImportance) tryRender(renderFeatureImportance, 'FeatureImportance');
+        if (target === 'seasonal' && !charts.seasonal) tryRender(renderSeasonal, 'Seasonal');
+        if (target === 'anomalies' && !charts.anomalyTimeline) tryRender(renderAnomalyTimeline, 'AnomalyTimeline');
       });
     });
   }
@@ -119,13 +123,13 @@
     if (!container) return;
 
     const insights = [
-      { icon: '🔗', title: 'DEP_DELAY ↔ ARR_DELAY', val: '0.93', desc: 'Extremely strong positive correlation — departure delays almost perfectly predict arrival delays.', level: 'high' },
-      { icon: '✈️', title: 'DISTANCE ↔ AIR_TIME', val: '0.97', desc: 'Near-perfect correlation as expected — longer routes have proportionally longer air times.', level: 'high' },
-      { icon: '⚠️', title: 'CARRIER_DELAY ↔ ARR_DELAY', val: '0.72', desc: 'Carrier-specific issues (maintenance, crew) are a major driver of arrival delays.', level: 'high' },
-      { icon: '🌧️', title: 'WEATHER_DELAY ↔ ARR_DELAY', val: '0.34', desc: 'Moderate but significant — weather impacts are episodic but severe when they occur.', level: 'medium' },
-      { icon: '🏛️', title: 'NAS_DELAY ↔ ARR_DELAY', val: '0.45', desc: 'National Airspace System delays contribute meaningfully — reflects ATC and airport congestion.', level: 'medium' },
-      { icon: '⏰', title: 'CRS_DEP_TIME ↔ DEP_DELAY', val: '0.12', desc: 'Weak but consistent — later departures tend to accumulate more delays throughout the day.', level: 'low' },
-      { icon: '📊', title: 'DISTANCE ↔ DELAY', val: '-0.02', desc: 'Virtually no correlation — flight distance does not meaningfully predict delays.', level: 'low' },
+      { icon: '<i class="ph ph-link"></i>', title: 'DEP_DELAY ↔ ARR_DELAY', val: '0.93', desc: 'Extremely strong positive correlation — departure delays almost perfectly predict arrival delays.', level: 'high' },
+      { icon: '<i class="ph ph-airplane-tilt"></i>', title: 'DISTANCE ↔ AIR_TIME', val: '0.97', desc: 'Near-perfect correlation as expected — longer routes have proportionally longer air times.', level: 'high' },
+      { icon: '<i class="ph ph-warning"></i>', title: 'CARRIER_DELAY ↔ ARR_DELAY', val: '0.72', desc: 'Carrier-specific issues (maintenance, crew) are a major driver of arrival delays.', level: 'high' },
+      { icon: '<i class="ph ph-cloud-rain"></i>', title: 'WEATHER_DELAY ↔ ARR_DELAY', val: '0.34', desc: 'Moderate but significant — weather impacts are episodic but severe when they occur.', level: 'medium' },
+      { icon: '<i class="ph ph-bank"></i>', title: 'NAS_DELAY ↔ ARR_DELAY', val: '0.45', desc: 'National Airspace System delays contribute meaningfully — reflects ATC and airport congestion.', level: 'medium' },
+      { icon: '<i class="ph ph-clock"></i>', title: 'CRS_DEP_TIME ↔ DEP_DELAY', val: '0.12', desc: 'Weak but consistent — later departures tend to accumulate more delays throughout the day.', level: 'low' },
+      { icon: '<i class="ph ph-chart-bar"></i>', title: 'DISTANCE ↔ DELAY', val: '-0.02', desc: 'Virtually no correlation — flight distance does not meaningfully predict delays.', level: 'low' },
     ];
 
     container.innerHTML = insights.map(ins => {
@@ -149,11 +153,11 @@
 
     const sorted = [...D.FEATURE_IMPORTANCE].sort((a, b) => a.importance - b.importance);
     const catColors = {
-      delay: '#E07A5F',
-      temporal: '#7B68EE',
-      weather: '#2A9D8F',
-      route: '#E9C46A',
-      carrier: '#264653'
+      delay: '#C49A6C',
+      temporal: '#8B7A6A',
+      weather: '#98947C',
+      route: '#B5A492',
+      carrier: '#2B251F'
     };
 
     charts.featureImportance = new Chart(ctx, {
@@ -240,11 +244,12 @@
     const sorted = [...D.DELAY_BY_AIRLINE].sort((a, b) => a.avgDelay - b.avgDelay);
     tbody.innerHTML = sorted.map((a, i) => {
       let rating;
-      if (a.avgDelay <= 6) rating = '⭐⭐⭐⭐⭐';
-      else if (a.avgDelay <= 9) rating = '⭐⭐⭐⭐';
-      else if (a.avgDelay <= 12) rating = '⭐⭐⭐';
-      else if (a.avgDelay <= 15) rating = '⭐⭐';
-      else rating = '⭐';
+      const star = '<i class="ph-fill ph-star" style="color:var(--accent-gold)"></i>';
+      if (a.avgDelay <= 6) rating = star.repeat(5);
+      else if (a.avgDelay <= 9) rating = star.repeat(4);
+      else if (a.avgDelay <= 12) rating = star.repeat(3);
+      else if (a.avgDelay <= 15) rating = star.repeat(2);
+      else rating = star;
 
       const delayClass = a.avgDelay > 14 ? 'positive' : a.avgDelay < 7 ? 'negative' : 'neutral';
       return `<tr>
@@ -273,32 +278,32 @@
             data: D.SEASONAL_PATTERN.months.map((_, i) =>
               +(D.SEASONAL_PATTERN.trend[i] + D.SEASONAL_PATTERN.seasonal[i]).toFixed(1)
             ),
-            borderColor: '#E07A5F',
-            backgroundColor: 'rgba(224,122,95,0.1)',
+            borderColor: '#C49A6C',
+            backgroundColor: 'rgba(196,154,108,0.1)',
             fill: true,
             borderWidth: 3,
-            pointBackgroundColor: '#E07A5F',
+            pointBackgroundColor: '#C49A6C',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
           },
           {
             label: 'Trend Component',
             data: D.SEASONAL_PATTERN.trend,
-            borderColor: '#2A9D8F',
+            borderColor: '#98947C',
             backgroundColor: 'transparent',
             borderWidth: 2,
             borderDash: [8, 4],
-            pointBackgroundColor: '#2A9D8F',
+            pointBackgroundColor: '#98947C',
             pointRadius: 3,
           },
           {
             label: 'Seasonal Component',
             data: D.SEASONAL_PATTERN.seasonal,
-            borderColor: '#7B68EE',
-            backgroundColor: 'rgba(123,104,238,0.08)',
+            borderColor: '#8B7A6A',
+            backgroundColor: 'rgba(139,122,106,0.08)',
             fill: true,
             borderWidth: 2,
-            pointBackgroundColor: '#7B68EE',
+            pointBackgroundColor: '#8B7A6A',
             pointRadius: 3,
           }
         ]
@@ -380,7 +385,7 @@
     container.innerHTML = D.ANOMALY_EVENTS.map(a => `
       <div class="anomaly-card">
         <div class="anomaly-header">
-          <span class="anomaly-date">📅 ${a.date}</span>
+          <span class="anomaly-date"><i class="ph ph-calendar-blank"></i> ${a.date}</span>
           <span class="anomaly-type ${a.type.toLowerCase()}">${a.type}</span>
         </div>
         <div class="anomaly-desc">${a.description}</div>
@@ -407,7 +412,7 @@
             label: 'Avg Delay (min)',
             data: D.ANOMALY_EVENTS.map(a => a.avgDelay),
             backgroundColor: D.ANOMALY_EVENTS.map(a =>
-              a.type === 'Weather' ? '#7B68EE' : a.type === 'NAS' ? '#E9C46A' : '#2A9D8F'
+              a.type === 'Weather' ? '#8B7A6A' : a.type === 'NAS' ? '#B5A492' : '#98947C'
             ),
             borderRadius: 8,
             barPercentage: 0.6,
@@ -417,11 +422,11 @@
             label: 'Cancellations',
             data: D.ANOMALY_EVENTS.map(a => a.cancellations),
             type: 'line',
-            borderColor: '#E07A5F',
-            backgroundColor: 'rgba(224,122,95,0.1)',
+            borderColor: '#C49A6C',
+            backgroundColor: 'rgba(196,154,108,0.1)',
             fill: true,
             borderWidth: 2,
-            pointBackgroundColor: '#E07A5F',
+            pointBackgroundColor: '#C49A6C',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
             pointRadius: 5,
@@ -468,21 +473,25 @@
           <h4>${r.title}</h4>
           <p>${r.description}</p>
           <div style="display: flex; gap: var(--space-sm); align-items: center; flex-wrap: wrap;">
-            <span class="rec-metric">📊 ${r.metric}</span>
+            <span class="rec-metric"><i class="ph ph-chart-bar"></i> ${r.metric}</span>
             <span class="rec-metric" style="text-transform: uppercase;">${r.impact} impact</span>
-            <span class="rec-metric">🏷️ ${r.category}</span>
+            <span class="rec-metric"><i class="ph ph-tag"></i> ${r.category}</span>
           </div>
         </div>
       </div>
     `).join('');
   }
 
+  function tryRender(fn, name) {
+    try { fn(); } catch(e) { console.error(`Error rendering [${name}]:`, e); }
+  }
+
   // ---- Init ----
   document.addEventListener('DOMContentLoaded', function () {
     initTabs();
-    renderCorrelationHeatmap();
-    renderCorrelationInsights();
-    renderAnomalies();
-    renderRecommendations();
+    tryRender(renderCorrelationHeatmap, 'CorrelationHeatmap');
+    tryRender(renderCorrelationInsights, 'CorrelationInsights');
+    tryRender(renderAnomalies, 'Anomalies');
+    tryRender(renderRecommendations, 'Recommendations');
   });
 })();

@@ -6,14 +6,15 @@
   <title>Dashboard — AeroIntel</title>
   <meta name="description" content="Interactive analytics dashboard for airline operations intelligence. Explore delay patterns, airline performance, and route analytics." />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><path d='M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V200H104V104a8,8,0,0,0-8-8H40a8,8,0,0,0-8,8V200H24a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM48,112H88v88H48Z' fill='%23C49A6C'/></svg>" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
   <div class="app-layout">
     <!-- ---- Sidebar ---- -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon">✈️</div>
+        <div class="brand-icon"><i class="ph-fill ph-airplane-tilt"></i></div>
         <div class="brand-text">
           <h3>AeroIntel</h3>
           <span>Operations Intelligence</span>
@@ -22,29 +23,29 @@
       <nav class="sidebar-nav">
         <div class="nav-label">Main</div>
         <a href="index.html" class="nav-item">
-          <span class="nav-icon">🏠</span> Home
+          <span class="nav-icon"><i class="ph ph-house"></i></span> Home
         </a>
         <a href="dashboard.html" class="nav-item active">
-          <span class="nav-icon">📊</span> Dashboard
+          <span class="nav-icon"><i class="ph ph-chart-bar"></i></span> Dashboard
         </a>
         <a href="predict.html" class="nav-item">
-          <span class="nav-icon">🤖</span> Predict Delay
+          <span class="nav-icon"><i class="ph ph-robot"></i></span> Predict Delay
         </a>
         <a href="insights.html" class="nav-item">
-          <span class="nav-icon">🔍</span> Deep Insights
+          <span class="nav-icon"><i class="ph ph-magnifying-glass"></i></span> Deep Insights
         </a>
         <div class="nav-label">Analytics</div>
         <a href="#kpi-section" class="nav-item">
-          <span class="nav-icon">📈</span> KPI Overview
+          <span class="nav-icon"><i class="ph ph-trend-up"></i></span> KPI Overview
         </a>
         <a href="#airlines-section" class="nav-item">
-          <span class="nav-icon">✈️</span> Airlines
+          <span class="nav-icon"><i class="ph ph-airplane-tilt"></i></span> Airlines
         </a>
         <a href="#routes-section" class="nav-item">
-          <span class="nav-icon">🗺️</span> Routes
+          <span class="nav-icon"><i class="ph ph-map-trifold"></i></span> Routes
         </a>
         <a href="#temporal-section" class="nav-item">
-          <span class="nav-icon">📅</span> Temporal
+          <span class="nav-icon"><i class="ph ph-calendar-blank"></i></span> Temporal
         </a>
       </nav>
       <div class="sidebar-footer">
@@ -69,11 +70,11 @@
         </div>
         <div class="header-right">
           <div class="header-search">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><i class="ph ph-magnifying-glass"></i></span>
             <input type="text" placeholder="Search airlines, airports..." id="dashboard-search" />
           </div>
-          <button class="header-btn tooltip" data-tooltip="Refresh Data" id="refresh-btn">🔄</button>
-          <button class="header-btn tooltip" data-tooltip="Export" id="export-btn">📥</button>
+          <button class="header-btn tooltip" data-tooltip="Refresh Data" id="refresh-btn"><i class="ph ph-arrows-clockwise"></i></button>
+          <button class="header-btn tooltip" data-tooltip="Export" id="export-btn"><i class="ph ph-download-simple"></i></button>
         </div>
       </header>
 
@@ -81,7 +82,7 @@
       <div class="page-content">
         <!-- Filter Bar -->
         <div class="filter-bar fade-in" id="filter-bar">
-          <span class="filter-label">🎛️ Filters</span>
+          <span class="filter-label"><i class="ph ph-sliders-horizontal"></i> Filters</span>
           <select class="filter-select" id="filter-airline">
             <option value="all">All Airlines</option>
           </select>

@@ -6,14 +6,15 @@
   <title>AI Delay Prediction — AeroIntel</title>
   <meta name="description" content="Predict flight delays using AI. Enter flight details and get real-time delay probability, duration estimate, and risk assessment." />
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><path d='M232,104a8,8,0,0,0-8,8v12h-4V104a24,24,0,0,0-48,0v20H156V72a44,44,0,0,0-88,0v52H52V104a24,24,0,0,0-48,0v48a8,8,0,0,0,16,0V104a8,8,0,0,1,16,0v64a40,40,0,0,0,40,40H180a40,40,0,0,0,40-40V104A8,8,0,0,1,236,104v48a8,8,0,0,0,16,0V112A8,8,0,0,0,232,104ZM84,72a28,28,0,0,1,56,0v52H84Zm120,96a24,24,0,0,1-24,24H76a24,24,0,0,1-24-24V140H204Z' fill='%23C49A6C'/></svg>" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
   <div class="app-layout">
     <!-- ---- Sidebar ---- -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
-        <div class="brand-icon">✈️</div>
+        <div class="brand-icon"><i class="ph-fill ph-airplane-tilt"></i></div>
         <div class="brand-text">
           <h3>AeroIntel</h3>
           <span>Operations Intelligence</span>
@@ -21,14 +22,14 @@
       </div>
       <nav class="sidebar-nav">
         <div class="nav-label">Main</div>
-        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span> Home</a>
-        <a href="dashboard.html" class="nav-item"><span class="nav-icon">📊</span> Dashboard</a>
-        <a href="predict.html" class="nav-item active"><span class="nav-icon">🤖</span> Predict Delay</a>
-        <a href="insights.html" class="nav-item"><span class="nav-icon">🔍</span> Deep Insights</a>
+        <a href="index.html" class="nav-item"><span class="nav-icon"><i class="ph ph-house"></i></span> Home</a>
+        <a href="dashboard.html" class="nav-item"><span class="nav-icon"><i class="ph ph-chart-bar"></i></span> Dashboard</a>
+        <a href="predict.html" class="nav-item active"><span class="nav-icon"><i class="ph ph-robot"></i></span> Predict Delay</a>
+        <a href="insights.html" class="nav-item"><span class="nav-icon"><i class="ph ph-magnifying-glass"></i></span> Deep Insights</a>
         <div class="nav-label">Prediction</div>
-        <a href="#predict-form" class="nav-item"><span class="nav-icon">📝</span> Input Flight</a>
-        <a href="#prediction-result" class="nav-item"><span class="nav-icon">📊</span> Results</a>
-        <a href="#whatif-section" class="nav-item"><span class="nav-icon">🔄</span> What-If</a>
+        <a href="#predict-form" class="nav-item"><span class="nav-icon"><i class="ph ph-note-pencil"></i></span> Input Flight</a>
+        <a href="#prediction-result" class="nav-item"><span class="nav-icon"><i class="ph ph-chart-line"></i></span> Results</a>
+        <a href="#whatif-section" class="nav-item"><span class="nav-icon"><i class="ph ph-arrows-clockwise"></i></span> What-If</a>
       </nav>
       <div class="sidebar-footer">
         <div class="project-info">
@@ -51,7 +52,7 @@
         </div>
         <div class="header-right">
           <div class="header-search">
-            <span class="search-icon">🔍</span>
+            <span class="search-icon"><i class="ph ph-magnifying-glass"></i></span>
             <input type="text" placeholder="Search..." />
           </div>
         </div>
@@ -61,7 +62,7 @@
         <!-- Model Performance Banner -->
         <div class="card fade-in" style="margin-bottom: var(--space-xl); background: linear-gradient(135deg, #1B2A4A, #2a3f6a); border: none;">
           <div class="card-header">
-            <h3 style="color: white;">🧠 Model Performance Metrics</h3>
+            <h3 style="color: white;"><i class="ph ph-brain"></i> Model Performance Metrics</h3>
             <span class="card-badge" style="background: rgba(42,157,143,0.2); color: #6EC6BA;">Random Forest + XGBoost</span>
           </div>
           <div class="model-metrics-grid" id="model-metrics"></div>
@@ -70,7 +71,7 @@
         <!-- Prediction Form -->
         <div class="card fade-in" id="predict-form" style="margin-bottom: var(--space-xl);">
           <div class="card-header">
-            <h3>✈️ Enter Flight Details</h3>
+            <h3><i class="ph ph-airplane-in-flight"></i> Enter Flight Details</h3>
             <span class="card-badge teal">Input</span>
           </div>
           <form class="predict-form" id="flight-form">
@@ -130,7 +131,7 @@
               </select>
             </div>
             <div class="form-group full-width" style="flex-direction: row; gap: var(--space-md); align-items: flex-end;">
-              <button type="submit" class="btn btn-primary btn-lg" style="flex:1;">🤖 Predict Delay</button>
+              <button type="submit" class="btn btn-primary btn-lg" style="flex:1;"><i class="ph ph-robot"></i> Predict Delay</button>
               <button type="reset" class="btn btn-secondary btn-lg" style="flex:0.4;">Clear</button>
             </div>
           </form>
@@ -196,7 +197,7 @@
         <!-- What-If Section -->
         <div class="whatif-section fade-in" id="whatif-section">
           <div class="card-header">
-            <h3>🔄 What-If Scenario Analysis</h3>
+            <h3><i class="ph ph-arrows-clockwise"></i> What-If Scenario Analysis</h3>
             <span class="card-badge lavender">Interactive</span>
           </div>
           <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--space-lg);">

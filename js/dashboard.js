@@ -46,16 +46,16 @@
 
   // ---- Chart Colors ----
   const C = {
-    coral: '#E07A5F',
-    coralLight: 'rgba(224,122,95,0.15)',
-    teal: '#2A9D8F',
-    tealLight: 'rgba(42,157,143,0.15)',
-    gold: '#E9C46A',
-    goldLight: 'rgba(233,196,106,0.2)',
-    lavender: '#7B68EE',
-    lavenderLight: 'rgba(123,104,238,0.15)',
-    navy: '#1B2A4A',
-    dark: '#264653',
+    coral: '#C49A6C',
+    coralLight: 'rgba(196,154,108,0.25)',
+    teal: '#98947C',
+    tealLight: 'rgba(152,148,124,0.25)',
+    gold: '#B5A492',
+    goldLight: 'rgba(181,164,146,0.25)',
+    lavender: '#8B7A6A',
+    lavenderLight: 'rgba(139,122,106,0.25)',
+    navy: '#3E362E',
+    dark: '#2B251F',
   };
 
   // ---- Monthly Trend Chart ----
@@ -479,17 +479,25 @@
   }
 
   // ---- Init ----
+  function tryRender(fn, name) {
+    try {
+      fn();
+    } catch (e) {
+      console.error(`Error rendering chart [${name}]:`, e);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initFilters();
     renderKPIs();
-    renderMonthlyTrend();
-    renderDelayCauses();
-    renderAirlineDelay();
-    renderDOWRadar();
-    renderDelayDist();
-    renderHourly();
-    renderAirportBubble();
-    renderCancellation();
+    tryRender(renderMonthlyTrend, 'MonthlyTrend');
+    tryRender(renderDelayCauses, 'DelayCauses');
+    tryRender(renderAirlineDelay, 'AirlineDelay');
+    tryRender(renderDOWRadar, 'DOWRadar');
+    tryRender(renderDelayDist, 'DelayDist');
+    tryRender(renderHourly, 'Hourly');
+    tryRender(renderAirportBubble, 'AirportBubble');
+    tryRender(renderCancellation, 'Cancellation');
     renderRoutesTable();
   });
 })();

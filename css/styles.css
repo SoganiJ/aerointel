@@ -9,51 +9,51 @@
 /* ---- CSS Custom Properties ---- */
 :root {
   /* Primary Palette */
-  --bg-primary: #F5F0E8;
-  --bg-secondary: #EDE8DE;
+  --bg-primary: #FDFBF7;
+  --bg-secondary: #F5EFE6;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #FFFDF8;
-  --bg-sidebar: #1B2A4A;
-  --bg-sidebar-hover: #243656;
-  --bg-overlay: rgba(27, 42, 74, 0.6);
+  --bg-card-hover: #FCFAF5;
+  --bg-sidebar: #3E362E;
+  --bg-sidebar-hover: #4F453B;
+  --bg-overlay: rgba(62, 54, 46, 0.6);
 
   /* Accent Colors */
-  --accent-coral: #E07A5F;
-  --accent-coral-light: #F4A691;
-  --accent-teal: #2A9D8F;
-  --accent-teal-light: #6EC6BA;
-  --accent-gold: #E9C46A;
-  --accent-gold-light: #F2DB99;
-  --accent-lavender: #7B68EE;
-  --accent-lavender-light: #A99BF5;
-  --accent-navy: #1B2A4A;
-  --accent-dark: #264653;
+  --accent-coral: #C49A6C;
+  --accent-coral-light: #DFD3C3;
+  --accent-teal: #98947C;
+  --accent-teal-light: #C4C2B1;
+  --accent-gold: #B5A492;
+  --accent-gold-light: #D9D2CB;
+  --accent-lavender: #8B7A6A;
+  --accent-lavender-light: #B8AFA7;
+  --accent-navy: #3E362E;
+  --accent-dark: #2B251F;
 
   /* Text Colors */
-  --text-primary: #1B2A4A;
-  --text-secondary: #5A6B8A;
-  --text-muted: #8D99AE;
+  --text-primary: #3E362E;
+  --text-secondary: #6D645A;
+  --text-muted: #9E968F;
   --text-inverse: #FFFFFF;
-  --text-accent: #E07A5F;
+  --text-accent: #C49A6C;
 
   /* Status Colors */
-  --status-success: #2A9D8F;
-  --status-warning: #E9C46A;
-  --status-danger: #E07A5F;
-  --status-info: #7B68EE;
-  --status-low: #6EC6BA;
-  --status-critical: #C1292E;
+  --status-success: #828C73;
+  --status-warning: #B5A492;
+  --status-danger: #A66551;
+  --status-info: #8B7A6A;
+  --status-low: #98947C;
+  --status-critical: #874635;
 
   /* Borders & Shadows */
-  --border-light: rgba(27, 42, 74, 0.08);
-  --border-medium: rgba(27, 42, 74, 0.15);
-  --shadow-sm: 0 2px 8px rgba(27, 42, 74, 0.06);
-  --shadow-md: 0 4px 16px rgba(27, 42, 74, 0.08);
-  --shadow-lg: 0 8px 32px rgba(27, 42, 74, 0.12);
-  --shadow-xl: 0 16px 48px rgba(27, 42, 74, 0.16);
-  --shadow-glow-coral: 0 4px 20px rgba(224, 122, 95, 0.3);
-  --shadow-glow-teal: 0 4px 20px rgba(42, 157, 143, 0.3);
-  --shadow-glow-lavender: 0 4px 20px rgba(123, 104, 238, 0.3);
+  --border-light: rgba(62, 54, 46, 0.08);
+  --border-medium: rgba(62, 54, 46, 0.15);
+  --shadow-sm: 0 2px 8px rgba(62, 54, 46, 0.04);
+  --shadow-md: 0 4px 16px rgba(62, 54, 46, 0.06);
+  --shadow-lg: 0 8px 32px rgba(62, 54, 46, 0.1);
+  --shadow-xl: 0 16px 48px rgba(62, 54, 46, 0.12);
+  --shadow-glow-coral: 0 4px 20px rgba(196, 154, 108, 0.25);
+  --shadow-glow-teal: 0 4px 20px rgba(152, 148, 124, 0.25);
+  --shadow-glow-lavender: 0 4px 20px rgba(139, 122, 106, 0.25);
 
   /* Radius */
   --radius-sm: 10px;

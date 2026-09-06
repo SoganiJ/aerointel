@@ -50,14 +50,14 @@
     if (!container) return;
     const M = D.MODEL_METRICS;
     const metrics = [
-      { label: 'Accuracy', value: (M.accuracy * 100).toFixed(1) + '%', color: '#2A9D8F' },
-      { label: 'Precision', value: (M.precision * 100).toFixed(1) + '%', color: '#E9C46A' },
-      { label: 'Recall', value: (M.recall * 100).toFixed(1) + '%', color: '#7B68EE' },
-      { label: 'F1 Score', value: (M.f1Score * 100).toFixed(1) + '%', color: '#E07A5F' },
-      { label: 'AUC-ROC', value: M.auc.toFixed(3), color: '#2A9D8F' },
-      { label: 'RMSE', value: M.rmse.toFixed(2) + ' min', color: '#E9C46A' },
-      { label: 'R² Score', value: M.r2.toFixed(3), color: '#7B68EE' },
-      { label: 'MSE', value: M.mse.toFixed(1), color: '#E07A5F' },
+      { label: 'Accuracy', value: (M.accuracy * 100).toFixed(1) + '%', color: '#98947C' },
+      { label: 'Precision', value: (M.precision * 100).toFixed(1) + '%', color: '#B5A492' },
+      { label: 'Recall', value: (M.recall * 100).toFixed(1) + '%', color: '#8B7A6A' },
+      { label: 'F1 Score', value: (M.f1Score * 100).toFixed(1) + '%', color: '#C49A6C' },
+      { label: 'AUC-ROC', value: M.auc.toFixed(3), color: '#98947C' },
+      { label: 'RMSE', value: M.rmse.toFixed(2) + ' min', color: '#B5A492' },
+      { label: 'R² Score', value: M.r2.toFixed(3), color: '#8B7A6A' },
+      { label: 'MSE', value: M.mse.toFixed(1), color: '#C49A6C' },
     ];
     container.innerHTML = metrics.map(m => `
       <div class="model-metric">
@@ -179,7 +179,7 @@
       `${getAirlineName(airline)} • ${origin} → ${dest}`;
 
     // Risk badge
-    const riskLabels = { low: '✅ Low Risk', medium: '⚠️ Medium Risk', high: '🔴 High Risk', critical: '🚨 Critical Risk' };
+    const riskLabels = { low: '<i class="ph-fill ph-check-circle"></i> Low Risk', medium: '<i class="ph-fill ph-warning"></i> Medium Risk', high: '<i class="ph-fill ph-warning-circle"></i> High Risk', critical: '<i class="ph-fill ph-warning-octagon"></i> Critical Risk' };
     document.getElementById('result-risk-badge').innerHTML =
       `<span class="risk-badge ${prediction.risk}">${riskLabels[prediction.risk]}</span>`;
 
@@ -219,9 +219,9 @@
       gaugeChart.destroy();
     }
 
-    const color = probability <= 25 ? '#2A9D8F' :
-                  probability <= 50 ? '#E9C46A' :
-                  probability <= 75 ? '#E07A5F' : '#C1292E';
+    const color = probability <= 25 ? '#98947C' :
+                  probability <= 50 ? '#B5A492' :
+                  probability <= 75 ? '#C49A6C' : '#874635';
 
     gaugeChart = new Chart(canvas, {
       type: 'doughnut',
@@ -312,7 +312,7 @@
       document.getElementById('wi-result-delay').textContent = result.delay + ' min';
       document.getElementById('wi-result-prob').textContent = result.probability + '%';
 
-      const riskLabels = { low: '✅ Low', medium: '⚠️ Medium', high: '🔴 High', critical: '🚨 Critical' };
+      const riskLabels = { low: '<i class="ph-fill ph-check-circle"></i> Low', medium: '<i class="ph-fill ph-warning"></i> Medium', high: '<i class="ph-fill ph-warning-circle"></i> High', critical: '<i class="ph-fill ph-warning-octagon"></i> Critical' };
       document.getElementById('wi-result-risk').textContent = riskLabels[result.risk];
     }
 
