@@ -612,6 +612,14 @@ img {
   width: 100%;
 }
 
+.chart-container canvas {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* ---- Filter Bar ---- */
 .filter-bar {
   display: flex;
