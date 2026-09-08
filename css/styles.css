@@ -614,7 +614,8 @@ img {
 }
 
 .chart-container canvas {
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* ---- Filter Bar ---- */
