@@ -446,6 +446,7 @@ img {
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  min-width: 0;
 }
 
 .card:hover {
@@ -609,10 +610,6 @@ img {
 .chart-container {
   position: relative;
   width: 100%;
-}
-
-.chart-container canvas {
-  width: 100% !important;
 }
 
 /* ---- Filter Bar ---- */
