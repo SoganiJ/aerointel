@@ -25,14 +25,18 @@
           c.style.display = c.id === `tab-${target}` ? '' : 'none';
         });
 
-        function tryRender(fn, name) {
-          try { fn(); } catch(e) { console.error(`Error rendering chart [${name}]:`, e); }
-        }
-
-        // Lazy-render charts when tab opens
-        if (target === 'importance' && !charts.featureImportance) tryRender(renderFeatureImportance, 'FeatureImportance');
-        if (target === 'seasonal' && !charts.seasonal) tryRender(renderSeasonal, 'Seasonal');
-        if (target === 'anomalies' && !charts.anomalyTimeline) tryRender(renderAnomalyTimeline, 'AnomalyTimeline');
+        // Defer chart rendering to next frame so the container has layout dimensions
+        setTimeout(() => {
+          if (target === 'importance' && !charts.featureImportance) {
+            tryRender(renderFeatureImportance, 'FeatureImportance');
+          }
+          if (target === 'seasonal' && !charts.seasonal) {
+            tryRender(renderSeasonal, 'Seasonal');
+          }
+          if (target === 'anomalies' && !charts.anomalyTimeline) {
+            tryRender(renderAnomalyTimeline, 'AnomalyTimeline');
+          }
+        }, 50);
       });
     });
   }

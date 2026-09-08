@@ -313,7 +313,7 @@
       document.getElementById('wi-result-prob').textContent = result.probability + '%';
 
       const riskLabels = { low: '<i class="ph-fill ph-check-circle"></i> Low', medium: '<i class="ph-fill ph-warning"></i> Medium', high: '<i class="ph-fill ph-warning-circle"></i> High', critical: '<i class="ph-fill ph-warning-octagon"></i> Critical' };
-      document.getElementById('wi-result-risk').textContent = riskLabels[result.risk];
+      document.getElementById('wi-result-risk').innerHTML = riskLabels[result.risk];
     }
 
     hourSlider.addEventListener('input', updateWhatIf);
