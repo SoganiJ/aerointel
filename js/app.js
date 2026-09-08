@@ -141,25 +141,25 @@
   function initChartDefaults() {
     if (typeof Chart === 'undefined') return;
 
-    Chart.defaults.font.family = "'Inter', sans-serif";
-    Chart.defaults.font.size = 12;
-    Chart.defaults.color = '#5A6B8A';
-    Chart.defaults.plugins.legend.labels.usePointStyle = true;
-    Chart.defaults.plugins.legend.labels.padding = 16;
-    Chart.defaults.plugins.legend.labels.boxWidth = 8;
-    Chart.defaults.plugins.tooltip.backgroundColor = '#1B2A4A';
-    Chart.defaults.plugins.tooltip.titleFont = { family: "'Outfit', sans-serif", weight: '600', size: 13 };
-    Chart.defaults.plugins.tooltip.bodyFont = { family: "'Inter', sans-serif", size: 12 };
-    Chart.defaults.plugins.tooltip.cornerRadius = 12;
-    Chart.defaults.plugins.tooltip.padding = 12;
-    Chart.defaults.plugins.tooltip.displayColors = true;
-    Chart.defaults.plugins.tooltip.boxPadding = 4;
-    Chart.defaults.elements.bar.borderRadius = 8;
-    Chart.defaults.elements.point.radius = 4;
-    Chart.defaults.elements.point.hoverRadius = 6;
-    Chart.defaults.elements.line.tension = 0.4;
-    Chart.defaults.scale.grid = { color: 'rgba(27, 42, 74, 0.06)', drawBorder: false };
-    Chart.defaults.scale.ticks = { padding: 8 };
+    // Chart.defaults.font.family = "'Inter', sans-serif";
+    // Chart.defaults.font.size = 12;
+    // Chart.defaults.color = '#5A6B8A';
+    // Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    // Chart.defaults.plugins.legend.labels.padding = 16;
+    // Chart.defaults.plugins.legend.labels.boxWidth = 8;
+    // Chart.defaults.plugins.tooltip.backgroundColor = '#1B2A4A';
+    // Chart.defaults.plugins.tooltip.titleFont = { family: "'Outfit', sans-serif", weight: '600', size: 13 };
+    // Chart.defaults.plugins.tooltip.bodyFont = { family: "'Inter', sans-serif", size: 12 };
+    // Chart.defaults.plugins.tooltip.cornerRadius = 12;
+    // Chart.defaults.plugins.tooltip.padding = 12;
+    // Chart.defaults.plugins.tooltip.displayColors = true;
+    // Chart.defaults.plugins.tooltip.boxPadding = 4;
+    // Chart.defaults.elements.bar.borderRadius = 8;
+    // Chart.defaults.elements.point.radius = 4;
+    // Chart.defaults.elements.point.hoverRadius = 6;
+    // Chart.defaults.elements.line.tension = 0.4;
+    // Chart.defaults.scale.grid = { color: 'rgba(27, 42, 74, 0.06)', drawBorder: false };
+    // Chart.defaults.scale.ticks = { padding: 8 };
   }
 
   // ---- Init on DOM Ready ----

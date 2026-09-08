@@ -110,12 +110,12 @@
         scales: {
           y: {
             position: 'left',
-            title: { display: true, text: 'Avg Delay (min)', font: { size: 11 } },
+            title: { display: true, text: 'Avg Delay (min)' },
             min: 0,
           },
           y1: {
             position: 'right',
-            title: { display: true, text: 'On-Time %', font: { size: 11 } },
+            title: { display: true, text: 'On-Time %' },
             min: 65,
             max: 95,
             grid: { drawOnChartArea: false },
@@ -148,7 +148,7 @@
         maintainAspectRatio: false,
         cutout: '62%',
         plugins: {
-          legend: { position: 'bottom', labels: { padding: 12, font: { size: 11 } } },
+          legend: { position: 'bottom', labels: { padding: 12 } },
           tooltip: {
             callbacks: {
               label: ctx => `${ctx.label}: ${ctx.parsed}%`,
@@ -196,8 +196,8 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: 'Avg Delay (min)', font: { size: 11 } } },
-          y: { ticks: { font: { size: 11 } } },
+          x: { title: { display: true, text: 'Avg Delay (min)' } },
+          y: { ticks: { } },
         },
       },
     });
@@ -240,9 +240,9 @@
         scales: {
           r: {
             beginAtZero: true,
-            ticks: { font: { size: 10 }, backdropColor: 'transparent' },
+            ticks: { backdropColor: 'transparent' },
             grid: { color: 'rgba(27,42,74,0.06)' },
-            pointLabels: { font: { size: 11, family: "'Inter', sans-serif" } },
+            pointLabels: { },
           },
         },
         plugins: { legend: { position: 'bottom' } },
@@ -291,9 +291,9 @@
           },
         },
         scales: {
-          x: { ticks: { font: { size: 9 }, maxRotation: 45 } },
+          x: { ticks: { maxRotation: 45 } },
           y: {
-            title: { display: true, text: 'Flight Count', font: { size: 11 } },
+            title: { display: true, text: 'Flight Count' },
             ticks: {
               callback: v => formatNum(v),
             },
@@ -343,8 +343,8 @@
           },
         },
         scales: {
-          x: { ticks: { font: { size: 10 } } },
-          y: { title: { display: true, text: 'Avg Delay (min)', font: { size: 11 } }, min: 0 },
+          x: { ticks: { } },
+          y: { title: { display: true, text: 'Avg Delay (min)' }, min: 0 },
         },
       },
     });
@@ -402,8 +402,8 @@
           },
         },
         scales: {
-          x: { title: { display: true, text: 'Flights (thousands)', font: { size: 11 } } },
-          y: { title: { display: true, text: 'Avg Delay (min)', font: { size: 11 } }, min: 0 },
+          x: { title: { display: true, text: 'Flights (thousands)' } },
+          y: { title: { display: true, text: 'Avg Delay (min)' }, min: 0 },
         },
       },
     });
@@ -445,14 +445,14 @@
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'bottom', labels: { font: { size: 11 } } },
+          legend: { position: 'bottom', labels: { } },
           tooltip: { mode: 'index', intersect: false },
         },
         scales: {
           x: { stacked: true },
           y: {
             stacked: true,
-            title: { display: true, text: 'Cancellation Rate %', font: { size: 11 } },
+            title: { display: true, text: 'Cancellation Rate %' },
           },
         },
       },

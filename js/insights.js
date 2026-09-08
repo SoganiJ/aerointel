@@ -191,11 +191,11 @@
         },
         scales: {
           x: {
-            title: { display: true, text: 'Importance Score', font: { size: 11 } },
+            title: { display: true, text: 'Importance Score' },
             max: 0.5,
             ticks: { callback: v => (v * 100).toFixed(0) + '%' }
           },
-          y: { ticks: { font: { size: 11 } } }
+          y: { ticks: { } }
         }
       }
     });
@@ -228,7 +228,7 @@
         maintainAspectRatio: false,
         cutout: '55%',
         plugins: {
-          legend: { position: 'bottom', labels: { padding: 14, font: { size: 11 } } },
+          legend: { position: 'bottom', labels: { padding: 14 } },
           tooltip: {
             callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed}%` }
           }
@@ -320,7 +320,7 @@
           legend: { position: 'top', labels: { padding: 16 } },
         },
         scales: {
-          y: { title: { display: true, text: 'Delay (min)', font: { size: 11 } } }
+          y: { title: { display: true, text: 'Delay (min)' } }
         }
       }
     });
@@ -454,10 +454,10 @@
           }
         },
         scales: {
-          y: { title: { display: true, text: 'Avg Delay (min)', font: { size: 11 } } },
+          y: { title: { display: true, text: 'Avg Delay (min)' } },
           y1: {
             position: 'right',
-            title: { display: true, text: 'Cancellations', font: { size: 11 } },
+            title: { display: true, text: 'Cancellations' },
             grid: { drawOnChartArea: false }
           }
         }
